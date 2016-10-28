@@ -1,4 +1,4 @@
-import { OPEN_MODAL } from '../../constants/action_types';
+import {OPEN_MODAL} from '../../constants/action-types';
 
 const initialState = false;
 

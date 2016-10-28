@@ -13,11 +13,12 @@ const server = require('gulp-server-livereload');
 
 gulp.task('webserver', () => {
   gulp.src('./dist')
-  .pipe(server({
-    livereload: true,
-    directoryListing: false,
-    open: true
-  }));
+    .pipe(server({
+      livereload: true,
+      directoryListing: false,
+      open: true,
+      fallback: 'index.html'
+    }));
 });
 
 gulp.task('css', () =>
@@ -34,20 +35,19 @@ gulp.task('html', () => gulp.src('./src/**/*.html')
     collapseWhitespace: true
   }))
   .pipe(gulp.dest('dist'))
-
 );
 
 gulp.task('javascript', () => browserify(
   './src/js/app.js', {
     debug: true
   })
-    .transform(babelify)
-    .bundle()
-    .pipe(source('todo.bundle.js'))
-    .pipe(buffer())
-    .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./dist/js'))
+  .transform(babelify)
+  .bundle()
+  .pipe(source('todo.bundle.js'))
+  .pipe(buffer())
+  .pipe(sourcemaps.init({ loadMaps: true }))
+  .pipe(sourcemaps.write('./'))
+  .pipe(gulp.dest('./dist/js'))
 );
 
 gulp.task('default', ['webserver', 'html', 'css', 'javascript'], () => {

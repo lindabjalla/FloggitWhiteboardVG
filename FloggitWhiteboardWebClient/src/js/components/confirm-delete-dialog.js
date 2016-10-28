@@ -1,9 +1,14 @@
 import React from 'react';
 
 const ConfirmDeletePostIt = (props) => {
+  function updatePostIts(){
+    return props.whiteboard.postIts.filter(postIt => postIt.id !== props.idOfPostItToDelete);
+  }
+
   function handleOk() {
-    console.log(`DELETING ${props.id}`);
-    props.onDelete(props.id);
+    const newPostIts = updatePostIts();
+    const whiteboard = {id: props.whiteboard.id, name: props.whiteboard.name, postIts: [...newPostIts]};
+    props.onDelete(props.idOfPostItToDelete, whiteboard);
   }
 
   function handleCancel() {
@@ -25,7 +30,7 @@ const ConfirmDeletePostIt = (props) => {
 
 ConfirmDeletePostIt.propTypes = () => ({
   isVisible: React.PropTypes.bool,
-  id: React.PropTypes.number,
+  idOfPostItToDelete: React.PropTypes.number,
   onDelete: React.PropTypes.func
 });
 

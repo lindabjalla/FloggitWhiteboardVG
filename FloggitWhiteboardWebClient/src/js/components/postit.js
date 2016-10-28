@@ -2,7 +2,7 @@ import React from 'react';
 
 const PostIt = (props) => {
   function showEditDialogue() {
-    props.onSetNotes(props.data.postIt.notes);
+    props.onSetNotes(props.data.notes);
     props.onEdit(props.data);
   }
 
@@ -12,15 +12,15 @@ const PostIt = (props) => {
 
   return (
     <li className="post-it">
-      <div className="panel-body" style={{ backgroundColor: props.data.postIt.color.code }}>
-        <h6>{props.data.postIt.timeCreated}</h6>
+      <div className="panel-body" style={{ backgroundColor: props.data.color.code }}>
+        <h6>{props.data.timeCreated}</h6>
         <h5 className="title">
-          <p> { props.data.postIt.title } </p>
+          <p> { props.data.title } </p>
         </h5>
         <div id="container">
-          <p className="text">{ props.data.postIt.text }</p>
+          <p className="text">{ props.data.text }</p>
         </div>
-        <ul className="post-it-note-list">{props.data.postIt.notes.map(note => (
+        <ul className="post-it-note-list">{props.data.notes.map(note => (
           <li key={note.id}>
             <p>{note.value}</p>
           </li>))}

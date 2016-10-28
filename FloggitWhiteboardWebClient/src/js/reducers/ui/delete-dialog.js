@@ -1,8 +1,8 @@
-import { SHOW_CONFIRM_DELETE_DIALOG, SET_BEING_DELETED } from '../../constants/action_types';
+import {SHOW_CONFIRM_DELETE_DIALOG, SET_BEING_DELETED} from '../../constants/action-types';
 
 const initialState = {
   confirmIsVisible: false,
-  beingDeleted: 0
+  idOfPostItToDelete: 0
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,7 +11,7 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, { confirmIsVisible: action.data });
     }
     case SET_BEING_DELETED: {
-      return Object.assign({}, state, { beingDeleted: action.data });
+      return Object.assign({}, state, { idOfPostItToDelete: action.data });
     }
     default: {
       return state;

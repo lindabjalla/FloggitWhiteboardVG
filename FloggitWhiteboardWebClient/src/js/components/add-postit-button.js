@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import AddPostItForm from './addPostItForm';
+import AddPostItForm from './add-postit-form';
 
 const customStyles = {
   content: {
@@ -46,6 +46,7 @@ const AddPostItButton = (props) => {
           onAddNote={props.onAddNote}
           onRemoveNote={props.onRemoveNote}
           notes={props.notes}
+          whiteboard={props.whiteboard}
         />
       </Modal>
     </div>
@@ -57,7 +58,8 @@ AddPostItButton.propTypes = {
   onAddNote: React.PropTypes.func,
   onRemoveNote: React.PropTypes.func,
   modalIsOpen: React.PropTypes.bool,
-  notes: React.PropTypes.arrayOf(React.PropTypes.object)
+  notes: React.PropTypes.arrayOf(React.PropTypes.object),
+  whiteboard: React.PropTypes.object,
 };
 
 export default AddPostItButton;

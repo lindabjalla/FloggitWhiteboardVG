@@ -1,54 +1,19 @@
 import React from 'react';
 import Note from './note';
+import setColor from '../tool-box/color-setter';
+import generateId from '../tool-box/id-generator';
 
-const generateId = () => +(new Date());
-
-const EditDialogue = (props) => {
+const AddPostItForm = (props) => {
   let title;
   let text;
   let color;
   let noteInput;
-  let notes = [];
-
-  function setColor() {
-    switch (color.value) {
-      case 'Blue':
-        return {
-          name: 'Blue',
-          code: 'dodgerblue'
-        };
-      case 'Green':
-        return {
-          name: 'Green',
-          code: 'mediumseagreen'
-        };
-      case 'Pink':
-        return {
-          name: 'Pink',
-          code: 'pink'
-        };
-      case 'Orange':
-        return {
-          name: 'Orange',
-          code: 'lightsalmon'
-        };
-      default:
-        return {
-          name: 'Blue',
-          code: 'dodgerblue'
-        };
-    }
-  }
-
-  function setDefaultNotes() {
-    notes = props.notes;
-    return notes;
-  }
 
   function handleAddNote() {
     const noteText = noteInput.value.trim();
+    let note;
     if (noteText.length > 0) {
-      const note = { id: generateId(), value: noteText };
+      note = { id: generateId(), value: noteText };
       noteInput.value = '';
       props.onAddNote(note);
     }
@@ -58,18 +23,13 @@ const EditDialogue = (props) => {
     props.onRemoveNote(id);
   }
 
-  function updatePostIt() {
+  function savePostIt() {
     const postTitle = title.value.trim();
     const postText = text.value.trim();
-    const postColor = setColor();
-    const postIt = {
-      title: postTitle,
-      text: postText,
-      timeCreated: props.data.postIt.timeCreated,
-      color: postColor,
-      notes: props.notes
-    };
-    props.onUpdate(props.data.id, postIt);
+    const postColor = setColor(color);
+    const postIt = { id: -1, title: postTitle, text: postText, color: postColor, notes: props.notes };
+    props.onAddPostIt(postIt, props.whiteboard);
+    props.closeModal();
   }
 
   return (
@@ -83,7 +43,7 @@ const EditDialogue = (props) => {
               type="text"
               className="form-control"
               id="inputTitle"
-              defaultValue={props.data.postIt.title}
+              placeholder="Title"
               ref={(c) => {
                 title = c;
               }}
@@ -97,7 +57,7 @@ const EditDialogue = (props) => {
             <textarea
               className="form-control"
               id="description"
-              defaultValue={props.data.postIt.text}
+              placeholder="Description"
               ref={(c) => {
                 text = c;
               }}
@@ -111,7 +71,6 @@ const EditDialogue = (props) => {
             <select
               className="form-control"
               id="color"
-              defaultValue={props.data.postIt.color.name}
               ref={(c) => {
                 color = c;
               }}
@@ -146,7 +105,7 @@ const EditDialogue = (props) => {
               </button>
             </div>
             <ul className="list-group note-list">
-              {setDefaultNotes().map(noteItem => (
+              {props.notes.map(noteItem => (
                 <Note
                   key={noteItem.id}
                   id={noteItem.id}
@@ -160,8 +119,16 @@ const EditDialogue = (props) => {
 
         <div className="form-group">
           <div className="col-lg-10 col-lg-offset-2">
-            <button type="button" className="btn btn-primary" onClick={updatePostIt}>Save</button>
-            <button type="reset" className="btn btn-default" onClick={() => props.onExit()}>Cancel</button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => {
+                savePostIt();
+              }}
+            >
+              Save
+            </button>
+            <button type="reset" className="btn btn-default" onClick={props.closeModal}>Cancel</button>
           </div>
         </div>
       </fieldset>
@@ -169,9 +136,9 @@ const EditDialogue = (props) => {
   );
 };
 
-EditDialogue.propTypes = () => ({
-  data: React.PropTypes.shape.isRequired,
-  onUpdate: React.PropTypes.func
-});
+AddPostItForm.propTypes = {
+  closeModal: React.PropTypes.func,
+  notes: React.PropTypes.arrayOf(React.PropTypes.object)
+};
 
-export default EditDialogue;
+export default AddPostItForm;

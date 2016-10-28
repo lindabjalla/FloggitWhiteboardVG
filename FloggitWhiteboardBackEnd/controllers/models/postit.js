@@ -14,37 +14,37 @@ module.exports.getAll = function () {
   return postIts;
 };
 
-module.exports.addOrUpdate = function (id, item) {
+module.exports.addOrUpdate = function (item) {
   var itemId;
   var timeCreated;
-  if (!item) {
+  var postIt;
+  if (item.id === -1) {
     timeCreated = new Date();
-    item = id;
     item.timeCreated = timeCreated.toLocaleString();
     itemId = generateId();
   } else {
-    itemId = id;
+    postIts = postIts.filter(function (postIt) {
+      return postIt.id !== item.id;
+    });
   }
-  postIts.push({
+  postIt = {
     id: itemId,
-    postIt: {
-      title: item.title,
-      text: item.text,
-      timeCreated: item.timeCreated,
-      color: item.color,
-      notes: item.notes
-    }
-  });
+    title: item.title,
+    text: item.text,
+    timeCreated: item.timeCreated,
+    color: item.color,
+    notes: item.notes
+  };
+  postIts.push(postIt);
   updateAllPostits();
-  return itemId;
+  return postIt;
 };
 
 module.exports.get = function (id) {
   id = parseInt(id);
-  var itemToReturn = postIts.filter(function (item) {
+  return postIts.filter(function (item) {
     return item.id === id;
   });
-  return itemToReturn;
 };
 
 module.exports.delete = function (id) {

@@ -1,49 +1,24 @@
 import React from 'react';
 import Note from './note';
+import setColor from '../tool-box/color-setter';
+import generateId from '../tool-box/id-generator';
 
-const generateId = () => +(new Date());
-
-const AddPostItForm = (props) => {
+const EditDialogue = (props) => {
   let title;
   let text;
   let color;
   let noteInput;
+  let notes = [];
 
-  function setColor() {
-    switch (color.value) {
-      case 'Blue':
-        return {
-          name: 'Blue',
-          code: 'dodgerblue'
-        };
-      case 'Green':
-        return {
-          name: 'Green',
-          code: 'mediumseagreen'
-        };
-      case 'Pink':
-        return {
-          name: 'Pink',
-          code: 'pink'
-        };
-      case 'Orange':
-        return {
-          name: 'Orange',
-          code: 'lightsalmon'
-        };
-      default:
-        return {
-          name: 'Blue',
-          code: 'dodgerblue'
-        };
-    }
+  function setDefaultNotes() {
+    notes = props.notes;
+    return notes;
   }
 
   function handleAddNote() {
     const noteText = noteInput.value.trim();
-    let note;
     if (noteText.length > 0) {
-      note = { id: generateId(), value: noteText };
+      const note = { id: generateId(), value: noteText };
       noteInput.value = '';
       props.onAddNote(note);
     }
@@ -53,13 +28,26 @@ const AddPostItForm = (props) => {
     props.onRemoveNote(id);
   }
 
-  function savePostIt() {
+  function updatePostIt() {
     const postTitle = title.value.trim();
     const postText = text.value.trim();
-    const postColor = setColor();
-    const postIt = { title: postTitle, text: postText, color: postColor, notes: props.notes };
-    props.onAddPostIt(postIt);
-    props.closeModal();
+    const postColor = setColor(color);
+    const postIt = {
+      id: props.data.id,
+      title: postTitle,
+      text: postText,
+      timeCreated: props.data.timeCreated,
+      color: postColor,
+      notes: props.notes
+    };
+    const newPostIts = updatePostIts(postIt);
+    const whiteboard = {id: props.whiteboard.id, name: props.whiteboard.name, postIts: [...newPostIts]};
+    props.onUpdate(postIt, whiteboard);
+  }
+
+  function updatePostIts(postIt){
+    const filteredPostIts = props.whiteboard.postIts.filter(aPostIt => aPostIt.id !== postIt.id);
+    return [...filteredPostIts, postIt];
   }
 
   return (
@@ -73,7 +61,7 @@ const AddPostItForm = (props) => {
               type="text"
               className="form-control"
               id="inputTitle"
-              placeholder="Title"
+              defaultValue={props.data.title}
               ref={(c) => {
                 title = c;
               }}
@@ -87,7 +75,7 @@ const AddPostItForm = (props) => {
             <textarea
               className="form-control"
               id="description"
-              placeholder="Description"
+              defaultValue={props.data.text}
               ref={(c) => {
                 text = c;
               }}
@@ -101,6 +89,7 @@ const AddPostItForm = (props) => {
             <select
               className="form-control"
               id="color"
+              defaultValue={props.data.color.name}
               ref={(c) => {
                 color = c;
               }}
@@ -135,7 +124,7 @@ const AddPostItForm = (props) => {
               </button>
             </div>
             <ul className="list-group note-list">
-              {props.notes.map(noteItem => (
+              {setDefaultNotes().map(noteItem => (
                 <Note
                   key={noteItem.id}
                   id={noteItem.id}
@@ -149,16 +138,8 @@ const AddPostItForm = (props) => {
 
         <div className="form-group">
           <div className="col-lg-10 col-lg-offset-2">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => {
-                savePostIt();
-              }}
-            >
-              Save
-            </button>
-            <button type="reset" className="btn btn-default" onClick={props.closeModal}>Cancel</button>
+            <button type="button" className="btn btn-primary" onClick={updatePostIt}>Save</button>
+            <button type="reset" className="btn btn-default" onClick={() => props.onExit()}>Cancel</button>
           </div>
         </div>
       </fieldset>
@@ -166,9 +147,9 @@ const AddPostItForm = (props) => {
   );
 };
 
-AddPostItForm.propTypes = {
-  closeModal: React.PropTypes.func,
-  notes: React.PropTypes.arrayOf(React.PropTypes.object)
-};
+EditDialogue.propTypes = () => ({
+  data: React.PropTypes.shape.isRequired,
+  onUpdate: React.PropTypes.func
+});
 
-export default AddPostItForm;
+export default EditDialogue;

@@ -1,7 +1,11 @@
 import React from 'react';
 
-export default class TitleBar extends React.Component {
-  render() {
-    return (<h1>{this.props.data}</h1>);
-  }
-}
+const TitleBar = (props) => {
+  return (<h1>{props.title}</h1>);
+};
+
+TitleBar.propTypes = {
+  title: React.PropTypes.string,
+};
+
+export default TitleBar;

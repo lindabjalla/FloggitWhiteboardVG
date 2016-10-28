@@ -1,21 +1,6 @@
 import axios from 'axios';
 import socketIOclient from 'socket.io-client';
-import * as types from '../constants/action_types';
-
-// const internalAddPostIt = postit => ({
-//   type: types.ADD_POSTIT,
-//   data: postit
-// });
-//
-// const internalRemove = id => ({
-//   type: types.REMOVE_POSTIT,
-//   data: id
-// });
-//
-// const internalUpdate = (id, postIt) => ({
-//   type: types.UPDATE,
-//   data: { id, postIt }
-// });
+import * as types from '../constants/action-types';
 
 const updateAllPostits = postIts => ({
   type: types.GET_ALL,
@@ -33,26 +18,17 @@ export const startSocket = () => (dispatch) => {
   socket.on('postit-update', (postIts) => {
     dispatch(updateAllPostits(postIts));
   });
+  socket.on('whiteboard-update', (whiteboards) => {
+    dispatch(setAllWhiteboards(whiteboards));
+  });
 };
-//
-// export const getAll = () => (dispatch) => {
-//   axios.get('http://localhost:8080/api/v1/postits')
-//     .then((response) => {
-//       dispatch(updateAllPostits(response.data));
-//     });
-// };
 
-export const add = postIt => (dispatch) => {
+export const add = (postIt, whiteboard) => (dispatch) => {
   axios.post('http://localhost:8080/api/v1/postits', postIt)
-    .then(() => {
-      // console.log(response.data);
-      //
-      // const newPostit = {
-      //   id: response.data.id,
-      //   postIt: response.data.postIt
-      // };
-      // dispatch(internalAddPostIt(newPostit));
-      // dispatch(startSocket());
+    .then((response) => {
+      const newPostIts = [...whiteboard.postIts, response.data];
+      const newWhiteboard = {id: whiteboard.id, name: whiteboard.name, postIts: [...newPostIts]};
+      dispatch(updateWhiteboard(newWhiteboard));
     }).catch((error) => {
       dispatch(internalError(error.status));
     });
@@ -61,21 +37,53 @@ export const add = postIt => (dispatch) => {
 export const remove = id => (dispatch) => {
   axios.delete(`http://localhost:8080/api/v1/postits/${id}`)
     .then(() => {
-      // dispatch(internalRemove(id));
     }).catch((error) => {
       dispatch(internalError(error.status));
     });
 };
 
-export const update = (id, postIt) => (dispatch) => {
-  console.log(postIt);
-  axios.put(`http://localhost:8080/api/v1/postits/${id}`, postIt)
+export const update = (postIt) => (dispatch) => {
+  axios.put(`http://localhost:8080/api/v1/postits/${postIt.id}`, postIt)
     .then(() => {
-      // dispatch(internalUpdate(id, postIt));
     }).catch((error) => {
       dispatch(internalError(error.status));
     });
 };
+
+export const addWhiteboard = whiteboard => (dispatch) => {
+  axios.post('http://localhost:8080/api/v1/whiteboards', whiteboard)
+    .then(() => {
+    }).catch((error) => {
+    dispatch(internalError(error.status));
+  });
+};
+
+export const getAllWhiteboards = () => (dispatch) => {
+  axios.get('http://localhost:8080/api/v1/whiteboards')
+    .then((response) => {
+      dispatch(setAllWhiteboards(response.data));
+    }).catch((error) => {
+    dispatch(internalError(error.status));
+  });
+};
+
+export const updateWhiteboard = whiteboard => (dispatch) => {
+  axios.put(`http://localhost:8080/api/v1/whiteboards/${whiteboard.id}`, whiteboard)
+    .then(() => {
+    }).catch((error) => {
+    dispatch(internalError(error.status));
+  });
+};
+
+export const setAllWhiteboards = whiteboards => ({
+  type: types.GET_ALL_WHITEBOARDS,
+  data: whiteboards
+});
+
+export const removeWhiteboard = id => ({
+  type: types.REMOVE_WHITEBOARD,
+  data: id
+});
 
 export const showDelete = show => ({
   type: types.SHOW_CONFIRM_DELETE_DIALOG,
@@ -115,4 +123,9 @@ export const removeNote = id => ({
 export const openModal = visible => ({
   type: types.OPEN_MODAL,
   data: visible
+});
+
+export const setTitle = title => ({
+  type: types.SET_TITLE,
+  data: title
 });

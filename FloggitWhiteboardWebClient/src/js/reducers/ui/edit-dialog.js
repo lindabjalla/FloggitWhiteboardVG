@@ -1,4 +1,4 @@
-import { SHOW_EDIT_DIALOG, GET_POSTIT_TO_EDIT, UPDATE_EDIT_DIALOG } from '../../constants/action_types';
+import {SHOW_EDIT_DIALOG, GET_POSTIT_TO_EDIT, UPDATE_EDIT_DIALOG} from '../../constants/action-types';
 
 const initialState = {
   visible: false,

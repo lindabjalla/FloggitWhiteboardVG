@@ -95,7 +95,7 @@ ul {
     padding: 15px;
 }
 
-#add-post-it-button {
+#add-post-it-button, #add-whiteboard-button {
     margin: 15px;
 }
 
@@ -125,4 +125,13 @@ p {
 
 .post-it-note-list li {
     margin-left: 14px;
+}
+
+legend {
+    color: #888888;
+}
+
+.whiteboard-list p {
+    font-size: large;
+    color: #ffffff;
 }

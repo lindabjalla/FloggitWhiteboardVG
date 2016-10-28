@@ -1,4 +1,4 @@
-import { SET_NOTES, ADD_NOTE, REMOVE_NOTE } from '../constants/action_types';
+import { SET_NOTES, ADD_NOTE, REMOVE_NOTE } from '../constants/action-types';
 
 const initialState = [];
 
