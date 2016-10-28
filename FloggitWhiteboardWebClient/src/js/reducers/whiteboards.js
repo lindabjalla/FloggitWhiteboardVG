@@ -1,4 +1,17 @@
-import {ADD_WHITEBOARD, REMOVE_WHITEBOARD, GET_ALL_WHITEBOARDS} from '../constants/action-types';
+import {ADD_WHITEBOARD, REMOVE_WHITEBOARD, SET_ALL_WHITEBOARDS} from '../constants/action-types';
+
+function sortById(whiteboards) {
+  whiteboards.sort((b, a) => {
+    if (a.id > b.id) {
+      return 1;
+    }
+    if (a.id < b.id) {
+      return -1;
+    }
+    return 0;
+  });
+  return whiteboards;
+}
 
 const initialState = [];
 
@@ -10,8 +23,10 @@ const reducer = (state = initialState, action) => {
     case REMOVE_WHITEBOARD: {
       return state.filter(whiteboard => action.data !== whiteboard.id);
     }
-    case GET_ALL_WHITEBOARDS: {
-      return [...action.data];
+    case SET_ALL_WHITEBOARDS: {
+      const whiteboards = action.data;
+      const sortedWhiteboards = sortById(whiteboards);
+      return [...sortedWhiteboards];
     }
     default: {
       return state;

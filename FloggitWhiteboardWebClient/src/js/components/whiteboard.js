@@ -1,7 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as serviceActions from '../actions/service';
+import * as actions from '../actions/index';
 import PostIt from './postit';
 import WhiteboardHeader from './whiteboard-header';
 import EditDialogue from './edit-dialogue';
@@ -94,7 +95,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleAdd: (postit, whiteboard) => {
-    dispatch(actions.add(postit, whiteboard));
+    dispatch(serviceActions.add(postit, whiteboard));
   },
   handleDeleteClick: (id) => {
     dispatch(actions.setBeingDeleted(id));
@@ -105,19 +106,19 @@ const mapDispatchToProps = dispatch => ({
       dispatch(actions.setBeingDeleted(0));
       dispatch(actions.showDelete(false));
     }
-    dispatch(actions.remove(id));
+    dispatch(serviceActions.remove(id));
     dispatch(actions.setBeingDeleted(0));
     dispatch(actions.showDelete(false));
-    dispatch(actions.updateWhiteboard(whiteboard));
+    dispatch(serviceActions.updateWhiteboard(whiteboard));
   },
   handleEdit: (postit) => {
     dispatch(actions.showEditDialog(true));
     dispatch(actions.getPostitToEdit(postit));
   },
   handleUpdatePostIt: (postIt, whiteboard) => {
-    dispatch(actions.update(postIt));
+    dispatch(serviceActions.update(postIt));
     dispatch(actions.showEditDialog(false));
-    dispatch(actions.updateWhiteboard(whiteboard));
+    dispatch(serviceActions.updateWhiteboard(whiteboard));
   },
   handleExit: () => {
     dispatch(actions.showEditDialog(false));
@@ -135,7 +136,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.openModal(visible));
   },
   handleUpdateWhiteboard: (whiteboard) => {
-    dispatch(actions.updateWhiteboard(whiteboard));
+    dispatch(serviceActions.updateWhiteboard(whiteboard));
   }
 });
 

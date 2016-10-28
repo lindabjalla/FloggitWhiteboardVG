@@ -2,7 +2,8 @@ import React from 'react';
 import Modal from 'react-modal';
 import {connect} from 'react-redux';
 import { Link } from 'react-router';
-import * as actions from '../actions';
+import * as serviceActions from '../actions/service';
+import * as actions from '../actions/index';
 import AddWhiteboardForm from './add-whiteboard-form';
 import TitleBar from './titlebar';
 
@@ -77,13 +78,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleAddWhiteboard: (whiteboard) => {
-    dispatch(actions.addWhiteboard(whiteboard));
+    dispatch(serviceActions.addWhiteboard(whiteboard));
   },
   handleRemoveWhiteboard: (id) => {
-    dispatch(actions.removeWhiteboard(id));
+    dispatch(serviceActions.removeWhiteboard(id));
   },
-  handleOpenModal: (visible) => {
-    dispatch(actions.openModal(visible));
+  handleOpenModal: (open) => {
+    dispatch(actions.openModal(open));
   }
 });
 
