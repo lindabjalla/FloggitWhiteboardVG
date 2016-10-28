@@ -37,7 +37,7 @@ const Home = (props) => {
         id="add-whiteboard-button"
         onClick={() => openModal()}
       >
-        Add whiteboard
+        Add Whiteboard
       </button>
       <ul className="list-group">
         { props.whiteboards.map((whiteboard, index) => (
