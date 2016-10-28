@@ -5,7 +5,7 @@ export const showDelete = show => ({
   data: show
 });
 
-export const setBeingDeleted = id => ({
+export const setIdOfPostItToDelete = id => ({
   type: types.SET_BEING_DELETED,
   data: id
 });

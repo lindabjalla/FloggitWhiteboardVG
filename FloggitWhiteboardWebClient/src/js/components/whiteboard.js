@@ -98,16 +98,16 @@ const mapDispatchToProps = dispatch => ({
     dispatch(serviceActions.addPostIt(postit, whiteboard));
   },
   handleDeleteClick: (id) => {
-    dispatch(actions.setBeingDeleted(id));
+    dispatch(actions.setIdOfPostItToDelete(id));
     dispatch(actions.showDelete(true));
   },
   handleDeletePostIt: (id, whiteboard) => {
     if (!id) {
-      dispatch(actions.setBeingDeleted(0));
+      dispatch(actions.setIdOfPostItToDelete(-1));
       dispatch(actions.showDelete(false));
     }
     dispatch(serviceActions.removePostIt(id));
-    dispatch(actions.setBeingDeleted(0));
+    dispatch(actions.setIdOfPostItToDelete(-1));
     dispatch(actions.showDelete(false));
     dispatch(serviceActions.updateWhiteboard(whiteboard));
   },

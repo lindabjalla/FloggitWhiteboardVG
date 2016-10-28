@@ -2,7 +2,7 @@ import {SHOW_CONFIRM_DELETE_DIALOG, SET_BEING_DELETED} from '../../constants/act
 
 const initialState = {
   confirmIsVisible: false,
-  idOfPostItToDelete: 0
+  idOfPostItToDelete: -1
 };
 
 const reducer = (state = initialState, action) => {
