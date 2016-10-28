@@ -1,4 +1,4 @@
-import {ADD_WHITEBOARD, REMOVE_WHITEBOARD, SET_ALL_WHITEBOARDS} from '../constants/action-types';
+import {ADD_WHITEBOARD, REMOVE_WHITEBOARD, UPDATE_ALL_WHITEBOARDS} from '../constants/action-types';
 
 function sortById(whiteboards) {
   whiteboards.sort((b, a) => {
@@ -23,7 +23,7 @@ const reducer = (state = initialState, action) => {
     case REMOVE_WHITEBOARD: {
       return state.filter(whiteboard => action.data !== whiteboard.id);
     }
-    case SET_ALL_WHITEBOARDS: {
+    case UPDATE_ALL_WHITEBOARDS: {
       const whiteboards = action.data;
       const sortedWhiteboards = sortById(whiteboards);
       return [...sortedWhiteboards];

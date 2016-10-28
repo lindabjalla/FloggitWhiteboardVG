@@ -37,7 +37,7 @@ router.route('/postits/:id')
     });
     // res.send();
   })
-  // update the postit with id (accessed at PUT http://localhost:8080/api/v1/postits/:id)
+  // updatePostIt the postit with id (accessed at PUT http://localhost:8080/api/v1/postits/:id)
   .put(function (req, res) {
     var updatePostit = req.body;
     var id = req.params.id;

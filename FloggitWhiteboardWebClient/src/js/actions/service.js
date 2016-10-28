@@ -12,18 +12,28 @@ const internalError = errorText => ({
   data: errorText
 });
 
+const updateAllWhiteboards = whiteboards => ({
+  type: types.UPDATE_ALL_WHITEBOARDS,
+  data: whiteboards
+});
+
+export const removeWhiteboard = id => ({
+  type: types.REMOVE_WHITEBOARD,
+  data: id
+});
+
 export const startSocket = () => (dispatch) => {
   const socket = socketIOclient('http://localhost:8080');
 
-  socket.on('postit-update', (postIts) => {
+  socket.on('postit-updated', (postIts) => {
     dispatch(updateAllPostits(postIts));
   });
-  socket.on('whiteboard-update', (whiteboards) => {
-    dispatch(setAllWhiteboards(whiteboards));
+  socket.on('whiteboard-updated', (whiteboards) => {
+    dispatch(updateAllWhiteboards(whiteboards));
   });
 };
 
-export const add = (postIt, whiteboard) => (dispatch) => {
+export const addPostIt = (postIt, whiteboard) => (dispatch) => {
   axios.post('http://localhost:8080/api/v1/postits', postIt)
     .then((response) => {
       const newPostIts = [...whiteboard.postIts, response.data];
@@ -34,7 +44,7 @@ export const add = (postIt, whiteboard) => (dispatch) => {
   });
 };
 
-export const remove = id => (dispatch) => {
+export const removePostIt = id => (dispatch) => {
   axios.delete(`http://localhost:8080/api/v1/postits/${id}`)
     .then(() => {
     }).catch((error) => {
@@ -42,7 +52,7 @@ export const remove = id => (dispatch) => {
   });
 };
 
-export const update = (postIt) => (dispatch) => {
+export const updatePostIt = (postIt) => (dispatch) => {
   axios.put(`http://localhost:8080/api/v1/postits/${postIt.id}`, postIt)
     .then(() => {
     }).catch((error) => {
@@ -58,15 +68,6 @@ export const addWhiteboard = whiteboard => (dispatch) => {
   });
 };
 
-export const getAllWhiteboards = () => (dispatch) => {
-  axios.get('http://localhost:8080/api/v1/whiteboards')
-    .then((response) => {
-      dispatch(setAllWhiteboards(response.data));
-    }).catch((error) => {
-    dispatch(internalError(error.status));
-  });
-};
-
 export const updateWhiteboard = whiteboard => (dispatch) => {
   axios.put(`http://localhost:8080/api/v1/whiteboards/${whiteboard.id}`, whiteboard)
     .then(() => {
@@ -74,13 +75,3 @@ export const updateWhiteboard = whiteboard => (dispatch) => {
     dispatch(internalError(error.status));
   });
 };
-
-export const setAllWhiteboards = whiteboards => ({
-  type: types.SET_ALL_WHITEBOARDS,
-  data: whiteboards
-});
-
-export const removeWhiteboard = id => ({
-  type: types.REMOVE_WHITEBOARD,
-  data: id
-});

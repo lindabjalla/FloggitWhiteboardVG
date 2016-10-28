@@ -36,7 +36,7 @@ const Whiteboard = (props) => {
   return (
     <div>
       <WhiteboardHeader
-        onAddPostIt={props.handleAdd}
+        onAddPostIt={props.handleAddPostIt}
         onAddNote={props.handleAddNote}
         onRemoveNote={props.handleRemoveNote}
         notes={props.notes}
@@ -94,8 +94,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleAdd: (postit, whiteboard) => {
-    dispatch(serviceActions.add(postit, whiteboard));
+  handleAddPostIt: (postit, whiteboard) => {
+    dispatch(serviceActions.addPostIt(postit, whiteboard));
   },
   handleDeleteClick: (id) => {
     dispatch(actions.setBeingDeleted(id));
@@ -106,7 +106,7 @@ const mapDispatchToProps = dispatch => ({
       dispatch(actions.setBeingDeleted(0));
       dispatch(actions.showDelete(false));
     }
-    dispatch(serviceActions.remove(id));
+    dispatch(serviceActions.removePostIt(id));
     dispatch(actions.setBeingDeleted(0));
     dispatch(actions.showDelete(false));
     dispatch(serviceActions.updateWhiteboard(whiteboard));
@@ -116,7 +116,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.getPostitToEdit(postit));
   },
   handleUpdatePostIt: (postIt, whiteboard) => {
-    dispatch(serviceActions.update(postIt));
+    dispatch(serviceActions.updatePostIt(postIt));
     dispatch(actions.showEditDialog(false));
     dispatch(serviceActions.updateWhiteboard(whiteboard));
   },
@@ -141,7 +141,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Whiteboard.propTypes = () => ({
-  handleAdd: React.PropTypes.func,
+  handleAddPostIt: React.PropTypes.func,
   confirmIsVisible: React.PropTypes.bool,
   handleDeleteClick: React.PropTypes.func,
   handleEdit: React.PropTypes.func,
