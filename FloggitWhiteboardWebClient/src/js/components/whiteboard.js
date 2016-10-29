@@ -62,7 +62,7 @@ const Whiteboard = (props) => {
       </div >
       <Modal isOpen={props.editDialogIsVisible} style={editDialogStyles}>
         <EditDialogue
-          data={props.postitToEdit}
+          data={props.postItToEdit}
           onUpdate={props.handleUpdatePostIt}
           onExit={props.handleExit}
           onAddNote={props.handleAddNote}
@@ -81,12 +81,13 @@ const Whiteboard = (props) => {
       </Modal>
     </div>);
 };
+
 const mapStateToProps = state => ({
   postits: state.postits,
   confirmIsVisible: state.deleteDialog.confirmIsVisible,
   idOfPostItToDelete: state.deleteDialog.idOfPostItToDelete,
   editDialogIsVisible: state.editDialog.visible,
-  postitToEdit: state.editDialog.postItToEdit,
+  postItToEdit: state.editDialog.postItToEdit,
   notes: state.notes,
   modalIsOpen: state.modal,
   whiteboard: state.whiteboard,
