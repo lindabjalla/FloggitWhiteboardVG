@@ -1,17 +1,10 @@
 import {ADD_WHITEBOARD, REMOVE_WHITEBOARD, UPDATE_ALL_WHITEBOARDS} from '../constants/action-types';
+import {sortById, sortByDate} from '../tool-box/sort';
 
-function sortById(whiteboards) {
-  whiteboards.sort((b, a) => {
-    if (a.id > b.id) {
-      return 1;
-    }
-    if (a.id < b.id) {
-      return -1;
-    }
-    return 0;
-  });
+const sortPostItsOfWhiteboards = (whiteboards)  => {
+  whiteboards.forEach(whiteboard => sortByDate(whiteboard.postIts));
   return whiteboards;
-}
+};
 
 const initialState = [];
 
@@ -25,7 +18,8 @@ const reducer = (state = initialState, action) => {
     }
     case UPDATE_ALL_WHITEBOARDS: {
       const whiteboards = action.data;
-      const sortedWhiteboards = sortById(whiteboards);
+      const whiteboardsWithSortedPostIts = sortPostItsOfWhiteboards(whiteboards);
+      const sortedWhiteboards = sortById(whiteboardsWithSortedPostIts);
       return [...sortedWhiteboards];
     }
     default: {

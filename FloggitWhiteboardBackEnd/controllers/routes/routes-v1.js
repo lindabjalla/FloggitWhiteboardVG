@@ -44,11 +44,11 @@ router.route('/postits/:id')
     id = parseInt(id);
     if (postitModel.get(id)) {
       postitModel.delete(id);
-      postitModel.addOrUpdate(id, updatePostit);
+      postitModel.addOrUpdate(updatePostit);
       res.status(200);
       res.send();
     } else {
-      postitModel.addOrUpdate(id, updatePostit);
+      postitModel.addOrUpdate(updatePostit);
       res.status(201);
       res.json(updatePostit);
       res.send();

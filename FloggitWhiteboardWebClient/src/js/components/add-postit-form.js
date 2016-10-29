@@ -9,7 +9,7 @@ const AddPostItForm = (props) => {
   let color;
   let noteInput;
 
-  function handleAddNote() {
+  const handleAddNote = () => {
     const noteText = noteInput.value.trim();
     let note;
     if (noteText.length > 0) {
@@ -17,20 +17,20 @@ const AddPostItForm = (props) => {
       noteInput.value = '';
       props.onAddNote(note);
     }
-  }
+  };
 
-  function handleRemoveNote(id) {
+  const handleRemoveNote = (id) => {
     props.onRemoveNote(id);
-  }
+  };
 
-  function savePostIt() {
+  const savePostIt = () => {
     const postTitle = title.value.trim();
     const postText = text.value.trim();
     const postColor = setColor(color);
     const postIt = { id: -1, title: postTitle, text: postText, color: postColor, notes: props.notes };
     props.onAddPostIt(postIt, props.whiteboard);
     props.closeModal();
-  }
+  };
 
   return (
     <form className="form-horizontal">

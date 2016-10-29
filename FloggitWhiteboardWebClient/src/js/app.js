@@ -13,12 +13,12 @@ import * as actions from './actions/index';
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-function closeModal() {
+const closeModal = () => {
   store.dispatch(actions.showAddWhiteboardForm(false));
   store.dispatch(actions.showEditDialog(false));
   store.dispatch(actions.showDelete(false));
   store.dispatch(actions.showAddPostItForm(false));
-}
+};
 
 const myApp =
   <Provider store={store}>

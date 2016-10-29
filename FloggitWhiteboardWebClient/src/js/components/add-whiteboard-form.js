@@ -3,7 +3,7 @@ import React from 'react';
 const AddWhiteboardForm = (props) => {
   let whiteboardInput;
 
-  function saveWhiteboard() {
+  const saveWhiteboard = () => {
     const whiteboardName = whiteboardInput.value;
     if (whiteboardName.length > 0) {
       const whiteboard = {
@@ -15,7 +15,7 @@ const AddWhiteboardForm = (props) => {
       whiteboardInput = '';
       props.onCloseModal();
     }
-  }
+  };
 
   return (
     <div>

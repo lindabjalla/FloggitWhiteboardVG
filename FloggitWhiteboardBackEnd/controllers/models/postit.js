@@ -15,20 +15,19 @@ module.exports.getAll = function () {
 };
 
 module.exports.addOrUpdate = function (item) {
-  var itemId;
   var timeCreated;
   var postIt;
   if (item.id === -1) {
     timeCreated = new Date();
     item.timeCreated = timeCreated.toLocaleString();
-    itemId = generateId();
+    item.id = generateId();
   } else {
     postIts = postIts.filter(function (postIt) {
       return postIt.id !== item.id;
     });
   }
   postIt = {
-    id: itemId,
+    id: item.id,
     title: item.title,
     text: item.text,
     timeCreated: item.timeCreated,

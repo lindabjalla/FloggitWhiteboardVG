@@ -1,14 +1,14 @@
 import React from 'react';
 
 const PostIt = (props) => {
-  function showEditDialogue() {
+  const showEditDialogue = () => {
     props.onSetNotes(props.data.notes);
     props.onEdit(props.data);
-  }
+  };
 
-  function showConfirmDialogue() {
+  const showConfirmDialogue = () => {
     props.onDelete(props.data.id);
-  }
+  };
 
   return (
     <li className="post-it">

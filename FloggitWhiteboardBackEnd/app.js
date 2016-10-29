@@ -19,6 +19,7 @@ app.use(logger('dev'));
 app.use(cors);
 app.use('/api/v1', routerV1);
 
+process.setMaxListeners(0);
 io.on('connection', postitSocket);
 io.on('connection', whiteboardSocket);
 

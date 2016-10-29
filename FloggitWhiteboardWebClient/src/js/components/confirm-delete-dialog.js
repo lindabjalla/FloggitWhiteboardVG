@@ -5,15 +5,15 @@ const ConfirmDeletePostIt = (props) => {
     return props.whiteboard.postIts.filter(postIt => postIt.id !== props.idOfPostItToDelete);
   }
 
-  function handleOk() {
+  const handleOk = () => {
     const newPostIts = updatePostIts();
     const whiteboard = {id: props.whiteboard.id, name: props.whiteboard.name, postIts: [...newPostIts]};
     props.onDelete(props.idOfPostItToDelete, whiteboard);
-  }
+  };
 
-  function handleCancel() {
+  const handleCancel = () => {
     props.onDelete();
-  }
+  };
 
   return (
     <div>

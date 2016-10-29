@@ -10,25 +10,25 @@ const EditDialogue = (props) => {
   let noteInput;
   let notes = [];
 
-  function setDefaultNotes() {
+  const setDefaultNotes = () => {
     notes = props.notes;
     return notes;
-  }
+  };
 
-  function handleAddNote() {
+  const handleAddNote = () => {
     const noteText = noteInput.value.trim();
     if (noteText.length > 0) {
       const note = { id: generateId(), value: noteText };
       noteInput.value = '';
       props.onAddNote(note);
     }
-  }
+  };
 
-  function handleRemoveNote(id) {
+  const handleRemoveNote = (id) => {
     props.onRemoveNote(id);
-  }
+  };
 
-  function updatePostIt() {
+  const updatePostIt = () => {
     const postTitle = title.value.trim();
     const postText = text.value.trim();
     const postColor = setColor(color);
@@ -43,9 +43,9 @@ const EditDialogue = (props) => {
     const newPostIts = updatePostIts(postIt);
     const whiteboard = {id: props.whiteboard.id, name: props.whiteboard.name, postIts: [...newPostIts]};
     props.onUpdate(postIt, whiteboard);
-  }
+  };
 
-  function updatePostIts(postIt){
+  const updatePostIts = (postIt) => {
     const filteredPostIts = props.whiteboard.postIts.filter(aPostIt => aPostIt.id !== postIt.id);
     return [...filteredPostIts, postIt];
   }
