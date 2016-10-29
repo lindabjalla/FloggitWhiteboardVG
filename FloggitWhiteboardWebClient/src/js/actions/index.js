@@ -10,8 +10,13 @@ export const setIdOfPostItToDelete = id => ({
   data: id
 });
 
+export const showAddPostItForm = visible => ({
+  type: types.SHOW_ADD_POSTIT_FORM,
+  data: visible
+});
+
 export const showEditDialog = visible => ({
-  type: types.SHOW_EDIT_DIALOG,
+  type: types.SHOW_EDIT_POSTIT_FORM,
   data: visible
 });
 
@@ -35,9 +40,9 @@ export const removeNote = id => ({
   data: id
 });
 
-export const openModal = open => ({
-  type: types.OPEN_MODAL,
-  data: open
+export const showAddWhiteboardForm = visible => ({
+  type: types.SHOW_ADD_WHITEBOARD_FORM,
+  data: visible
 });
 
 export const setTitle = title => ({

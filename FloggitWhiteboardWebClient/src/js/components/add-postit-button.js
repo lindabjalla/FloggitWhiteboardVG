@@ -13,11 +13,11 @@ const customStyles = {
 
 const AddPostItButton = (props) => {
   function closeModal() {
-    props.onOpenModal(false);
+    props.onShowAddPostItForm(false);
   }
 
   function openModal() {
-    props.onOpenModal(true);
+    props.onShowAddPostItForm(true);
   }
 
   function resetNotes() {
@@ -36,7 +36,7 @@ const AddPostItButton = (props) => {
         Add Post-it
       </button>
       <Modal
-        isOpen={props.modalIsOpen}
+        isOpen={props.addPostItFormIsVisible}
         onRequestClose={closeModal}
         style={customStyles}
       >
@@ -57,7 +57,7 @@ AddPostItButton.propTypes = {
   onAddPostIt: React.PropTypes.func,
   onAddNote: React.PropTypes.func,
   onRemoveNote: React.PropTypes.func,
-  modalIsOpen: React.PropTypes.bool,
+  addPostItFormIsVisible: React.PropTypes.bool,
   notes: React.PropTypes.arrayOf(React.PropTypes.object),
   whiteboard: React.PropTypes.object,
 };

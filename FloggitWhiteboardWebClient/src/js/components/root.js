@@ -2,7 +2,7 @@ import React from 'react';
 
 const Root = props =>
   <div>
-    {props.children}
+    { props.children }
   </div>;
 
 Root.propTypes = {

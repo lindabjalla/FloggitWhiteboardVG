@@ -19,11 +19,11 @@ const customStyles = {
 
 const Home = (props) => {
   function closeModal() {
-    props.handleOpenModal(false);
+    props.handleShowAddWhiteboardForm(false);
   }
 
   function openModal() {
-    props.handleOpenModal(true);
+    props.handleShowAddWhiteboardForm(true);
   }
 
   return (
@@ -55,7 +55,7 @@ const Home = (props) => {
           </li>)) }
       </ul>
       <Modal
-        isOpen={props.modalIsOpen}
+        isOpen={props.addWhiteboardFormIsVisible}
         onRequestClose={() => closeModal()}
         style={customStyles}
       >
@@ -72,7 +72,8 @@ const Home = (props) => {
 const mapStateToProps = state => ({
   modalIsOpen: state.modal,
   whiteboards: state.whiteboards,
-  title: state.whiteboard
+  title: state.whiteboard,
+  addWhiteboardFormIsVisible: state.addWhiteboardForm
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -82,15 +83,15 @@ const mapDispatchToProps = dispatch => ({
   handleRemoveWhiteboard: (id) => {
     dispatch(serviceActions.removeWhiteboard(id));
   },
-  handleOpenModal: (open) => {
-    dispatch(actions.openModal(open));
+  handleShowAddWhiteboardForm: (visible) => {
+    dispatch(actions.showAddWhiteboardForm(visible));
   }
 });
 
 Home.propTypes = {
-  handleOpenModal: React.PropTypes.func,
+  handleShowAddWhiteboardForm: React.PropTypes.func,
   whiteboards: React.PropTypes.arrayOf(React.PropTypes.object),
-  modalIsOpen: React.PropTypes.bool,
+  addWhiteboardFormIsVisible: React.PropTypes.bool,
   handleAddWhiteboard: React.PropTypes.func,
   handleRemoveWhiteboard: React.PropTypes.func
 };

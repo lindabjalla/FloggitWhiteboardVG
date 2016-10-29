@@ -13,8 +13,8 @@ const WhiteboardHeader = props =>
       onRemoveNote={props.onRemoveNote}
       notes={props.notes}
       onSetNotes={props.onSetNotes}
-      onOpenModal={props.onOpenModal}
-      modalIsOpen={props.modalIsOpen}
+      onShowAddPostItForm={props.onShowAddPostItForm}
+      addPostItFormIsVisible={props.addPostItFormIsVisible}
       whiteboard={props.whiteboard}
     />
   </div>;
@@ -26,8 +26,8 @@ WhiteboardHeader.propTypes = {
   title: React.PropTypes.string,
   notes: React.PropTypes.arrayOf(React.PropTypes.object),
   onSetNotes: React.PropTypes.func,
-  onOpenModal: React.PropTypes.func,
-  modalIsOpen: React.PropTypes.bool,
+  onShowAddPostItForm: React.PropTypes.func,
+  addPostItFormIsVisible: React.PropTypes.bool,
   whiteboard: React.PropTypes.object,
 };
 

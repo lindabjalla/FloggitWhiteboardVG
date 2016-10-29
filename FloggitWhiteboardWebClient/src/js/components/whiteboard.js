@@ -41,8 +41,8 @@ const Whiteboard = (props) => {
         onRemoveNote={props.handleRemoveNote}
         notes={props.notes}
         onSetNotes={props.handleSetNotes}
-        onOpenModal={props.handleOpenModal}
-        modalIsOpen={props.modalIsOpen}
+        onShowAddPostItForm={props.handleShowAddPostItForm}
+        addPostItFormIsVisible={props.addPostItFormIsVisible}
         title = {getWhiteboard().name}
         whiteboard = {getWhiteboard()}
       />
@@ -53,9 +53,8 @@ const Whiteboard = (props) => {
               key={item.id}
               id={item.id}
               data={item}
-              confirmIsVisible={props.confirmIsVisible}
               onDelete={props.handleDeleteClick}
-              onEdit={props.handleEdit}
+              onEdit={props.handleEditClick}
               onSetNotes={props.handleSetNotes}
             />)) }
         </ul>
@@ -64,16 +63,16 @@ const Whiteboard = (props) => {
         <EditDialogue
           data={props.postItToEdit}
           onUpdate={props.handleUpdatePostIt}
-          onExit={props.handleExit}
           onAddNote={props.handleAddNote}
           onRemoveNote={props.handleRemoveNote}
+          onExit={props.handleExit}
           notes={props.notes}
-          whiteboard = {getWhiteboard()}
+          whiteboard={getWhiteboard()}
         />
       </Modal>
       <Modal isOpen={props.confirmIsVisible} style={confirmDialogStyles}>
         <ConfirmDeletePostIt
-          isVisible={props.confirmIsVisible}
+          modalIsOpen={props.confirmIsVisible}
           idOfPostItToDelete={props.idOfPostItToDelete}
           onDelete={props.handleDeletePostIt}
           whiteboard = {getWhiteboard()}
@@ -89,7 +88,7 @@ const mapStateToProps = state => ({
   editDialogIsVisible: state.editDialog.visible,
   postItToEdit: state.editDialog.postItToEdit,
   notes: state.notes,
-  modalIsOpen: state.modal,
+  addPostItFormIsVisible: state.addPostItForm,
   whiteboard: state.whiteboard,
   whiteboards: state.whiteboards
 });
@@ -112,7 +111,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.showDelete(false));
     dispatch(serviceActions.updateWhiteboard(whiteboard));
   },
-  handleEdit: (postit) => {
+  handleEditClick: (postit) => {
     dispatch(actions.showEditDialog(true));
     dispatch(actions.getPostitToEdit(postit));
   },
@@ -133,8 +132,8 @@ const mapDispatchToProps = dispatch => ({
   handleRemoveNote: (id) => {
     dispatch(actions.removeNote(id));
   },
-  handleOpenModal: (visible) => {
-    dispatch(actions.openModal(visible));
+  handleShowAddPostItForm: (visible) => {
+    dispatch(actions.showAddPostItForm(visible));
   },
   handleUpdateWhiteboard: (whiteboard) => {
     dispatch(serviceActions.updateWhiteboard(whiteboard));
@@ -154,9 +153,9 @@ Whiteboard.propTypes = {
   handleRemoveNote: React.PropTypes.func,
   idOfPostItToDelete: React.PropTypes.number,
   handleDeletePostIt: React.PropTypes.func,
-  handleOpenModal: React.PropTypes.func,
+  handleShowAddPostItForm: React.PropTypes.func,
   notes: React.PropTypes.arrayOf(React.PropTypes.object),
-  modalIsOpen: React.PropTypes.bool,
+  addPostItFormIsVisible: React.PropTypes.bool,
   postItToEdit: React.PropTypes.object
 };
 

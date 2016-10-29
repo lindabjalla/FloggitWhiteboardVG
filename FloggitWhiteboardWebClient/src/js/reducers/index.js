@@ -3,14 +3,15 @@ import {routerReducer} from 'react-router-redux';
 
 import postits from './postits';
 import deleteDialog from './ui/delete-dialog';
-import editDialog from './ui/edit-dialog';
+import editDialog from './ui/edit-postit-form';
 import notes from './notes';
-import modal from './ui/modal';
+import addWhiteboardForm from './ui/add-whiteboard-form';
 import whiteboards from './whiteboards';
 import whiteboard from './whiteboard';
+import addPostItForm from './ui/add-postit-form';
 
 const reducer = combineReducers({
-  postits, deleteDialog, editDialog, notes, modal, whiteboards, whiteboard, routing: routerReducer
+  addWhiteboardForm, postits, deleteDialog, editDialog, notes, whiteboards, whiteboard, addPostItForm, routing: routerReducer
 });
 
 export default reducer;
