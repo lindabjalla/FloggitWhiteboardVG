@@ -1,5 +1,8 @@
 {
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "env": {
     "browser": true,
     "node": true
@@ -9,7 +12,10 @@
     "no-console": 1,
     "semi": 2,
     "eqeqeq": 2,
-    "quotes": [2, "single"]
+    "quotes": [
+      2,
+      "single"
+    ]
   },
   "parserOptions": {
     "ecmaVersion": 6,

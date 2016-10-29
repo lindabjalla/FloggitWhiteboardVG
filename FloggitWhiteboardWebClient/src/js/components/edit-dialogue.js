@@ -41,14 +41,14 @@ const EditDialogue = (props) => {
       notes: props.notes
     };
     const newPostIts = updatePostIts(postIt);
-    const whiteboard = {id: props.whiteboard.id, name: props.whiteboard.name, postIts: [...newPostIts]};
+    const whiteboard = { id: props.whiteboard.id, name: props.whiteboard.name, postIts: [...newPostIts] };
     props.onUpdate(postIt, whiteboard);
   };
 
   const updatePostIts = (postIt) => {
     const filteredPostIts = props.whiteboard.postIts.filter(aPostIt => aPostIt.id !== postIt.id);
     return [...filteredPostIts, postIt];
-  }
+  };
 
   return (
     <form className="form-horizontal">

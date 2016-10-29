@@ -31,7 +31,10 @@ const AddPostItButton = (props) => {
         type="button"
         id="add-post-it-button"
         className="btn btn-primary btn-lg"
-        onClick={() => { openModal(); resetNotes(); }}
+        onClick={() => {
+          openModal();
+          resetNotes();
+        }}
       >
         Add Post-it
       </button>

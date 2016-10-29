@@ -1,7 +1,7 @@
 import {ADD_WHITEBOARD, REMOVE_WHITEBOARD, UPDATE_ALL_WHITEBOARDS} from '../constants/action-types';
 import {sortById, sortByDate} from '../tool-box/sort';
 
-const sortPostItsOfWhiteboards = (whiteboards)  => {
+const sortPostItsOfWhiteboards = (whiteboards) => {
   whiteboards.forEach(whiteboard => sortByDate(whiteboard.postIts));
   return whiteboards;
 };

@@ -67,21 +67,21 @@ router.route('/whiteboards')
   });
 
 router.route('/whiteboards/:id')
-.put(function (req, res) {
-  var updateWhiteboard = req.body;
-  var id = req.params.id;
-  id = parseInt(id);
-  if (whiteboardModel.get(id)) {
-    whiteboardModel.delete(id);
-    whiteboardModel.addOrUpdate(updateWhiteboard);
-    res.status(200);
-    res.send();
-  } else {
-    postitModel.addOrUpdate(updateWhiteboard);
-    res.status(201);
-    res.json(updateWhiteboard);
-    res.send();
-  }
-});
+  .put(function (req, res) {
+    var updateWhiteboard = req.body;
+    var id = req.params.id;
+    id = parseInt(id);
+    if (whiteboardModel.get(id)) {
+      whiteboardModel.delete(id);
+      whiteboardModel.addOrUpdate(updateWhiteboard);
+      res.status(200);
+      res.send();
+    } else {
+      postitModel.addOrUpdate(updateWhiteboard);
+      res.status(201);
+      res.json(updateWhiteboard);
+      res.send();
+    }
+  });
 
 module.exports = router;

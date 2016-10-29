@@ -1,13 +1,13 @@
 import React from 'react';
 
 const ConfirmDeletePostIt = (props) => {
-  function updatePostIts(){
+  function updatePostIts() {
     return props.whiteboard.postIts.filter(postIt => postIt.id !== props.idOfPostItToDelete);
   }
 
   const handleOk = () => {
     const newPostIts = updatePostIts();
-    const whiteboard = {id: props.whiteboard.id, name: props.whiteboard.name, postIts: [...newPostIts]};
+    const whiteboard = { id: props.whiteboard.id, name: props.whiteboard.name, postIts: [...newPostIts] };
     props.onDelete(props.idOfPostItToDelete, whiteboard);
   };
 

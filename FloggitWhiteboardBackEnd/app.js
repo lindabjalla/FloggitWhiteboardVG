@@ -23,6 +23,6 @@ process.setMaxListeners(0);
 io.on('connection', postitSocket);
 io.on('connection', whiteboardSocket);
 
-http.listen(8080, function() {
+http.listen(8080, function () {
   console.log('service started on port 8080, url: http://localhost:8080');
 });

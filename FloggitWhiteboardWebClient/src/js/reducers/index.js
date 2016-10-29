@@ -11,7 +11,15 @@ import whiteboard from './whiteboard';
 import addPostItForm from './ui/add-postit-form';
 
 const reducer = combineReducers({
-  addWhiteboardForm, postits, deleteDialog, editDialog, notes, whiteboards, whiteboard, addPostItForm, routing: routerReducer
+  addWhiteboardForm,
+  postits,
+  deleteDialog,
+  editDialog,
+  notes,
+  whiteboards,
+  whiteboard,
+  addPostItForm,
+  routing: routerReducer
 });
 
 export default reducer;

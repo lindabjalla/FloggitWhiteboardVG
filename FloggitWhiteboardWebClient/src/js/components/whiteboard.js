@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import * as serviceActions from '../actions/service';
 import * as actions from '../actions/index';
 import PostIt from './postit';
@@ -29,10 +29,11 @@ const editDialogStyles = {
 };
 
 const Whiteboard = (props) => {
-  function getWhiteboard(){
+  function getWhiteboard() {
     const whiteboardId = Number(props.params.whiteboardId);
     return props.whiteboards.filter(whiteboard => whiteboard.id === whiteboardId)[0];
   }
+
   return (
     <div>
       <WhiteboardHeader
@@ -43,8 +44,8 @@ const Whiteboard = (props) => {
         onSetNotes={props.handleSetNotes}
         onShowAddPostItForm={props.handleShowAddPostItForm}
         addPostItFormIsVisible={props.addPostItFormIsVisible}
-        title = {getWhiteboard().name}
-        whiteboard = {getWhiteboard()}
+        title={getWhiteboard().name}
+        whiteboard={getWhiteboard()}
       />
       <div className="post-its-container">
         <ul className="list-group">
@@ -75,7 +76,7 @@ const Whiteboard = (props) => {
           modalIsOpen={props.confirmIsVisible}
           idOfPostItToDelete={props.idOfPostItToDelete}
           onDelete={props.handleDeletePostIt}
-          whiteboard = {getWhiteboard()}
+          whiteboard={getWhiteboard()}
         />
       </Modal>
     </div>);

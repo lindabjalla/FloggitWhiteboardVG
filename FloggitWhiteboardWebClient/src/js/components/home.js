@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import {connect} from 'react-redux';
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 import * as serviceActions from '../actions/service';
 import * as actions from '../actions/index';
 import AddWhiteboardForm from './add-whiteboard-form';
@@ -47,7 +47,7 @@ const Home = (props) => {
           >
             <p>
               <Link
-                to={{pathname: `${whiteboard.id}`, state: { whiteboard: whiteboard }}}
+                to={{ pathname: `${whiteboard.id}`, state: { whiteboard: whiteboard } }}
               >
                 {whiteboard.name}
               </Link>
