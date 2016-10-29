@@ -34,12 +34,12 @@ const PostIt = (props) => {
   );
 };
 
-PostIt.propTypes = () => ({
+PostIt.propTypes = {
   id: React.PropTypes.number,
   data: React.PropTypes.shape.isRequired,
   onEdit: React.PropTypes.func,
   confirmIsVisible: React.PropTypes.bool,
   onDelete: React.PropTypes.func
-});
+};
 
 export default PostIt;

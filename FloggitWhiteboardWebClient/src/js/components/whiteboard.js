@@ -141,7 +141,7 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-Whiteboard.propTypes = () => ({
+Whiteboard.propTypes = {
   handleAddPostIt: React.PropTypes.func,
   confirmIsVisible: React.PropTypes.bool,
   handleDeleteClick: React.PropTypes.func,
@@ -154,7 +154,10 @@ Whiteboard.propTypes = () => ({
   handleRemoveNote: React.PropTypes.func,
   idOfPostItToDelete: React.PropTypes.number,
   handleDeletePostIt: React.PropTypes.func,
-  handleOpenModal: React.PropTypes.func
-});
+  handleOpenModal: React.PropTypes.func,
+  notes: React.PropTypes.arrayOf(React.PropTypes.object),
+  modalIsOpen: React.PropTypes.bool,
+  postItToEdit: React.PropTypes.object
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Whiteboard);

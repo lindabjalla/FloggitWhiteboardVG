@@ -18,7 +18,6 @@ const customStyles = {
 };
 
 const Home = (props) => {
-
   function closeModal() {
     props.handleOpenModal(false);
   }
@@ -88,12 +87,12 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-Home.propTypes = ({
+Home.propTypes = {
   handleOpenModal: React.PropTypes.func,
   whiteboards: React.PropTypes.arrayOf(React.PropTypes.object),
   modalIsOpen: React.PropTypes.bool,
   handleAddWhiteboard: React.PropTypes.func,
   handleRemoveWhiteboard: React.PropTypes.func
-});
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

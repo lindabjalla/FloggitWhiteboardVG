@@ -147,9 +147,10 @@ const EditDialogue = (props) => {
   );
 };
 
-EditDialogue.propTypes = () => ({
+EditDialogue.propTypes = {
   data: React.PropTypes.shape.isRequired,
-  onUpdate: React.PropTypes.func
-});
+  onUpdate: React.PropTypes.func,
+  onExit: React.PropTypes.func
+};
 
 export default EditDialogue;

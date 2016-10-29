@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Root = (props) =>
+const Root = props =>
   <div>
     {props.children}
   </div>;

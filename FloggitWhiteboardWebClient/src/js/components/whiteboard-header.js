@@ -19,7 +19,7 @@ const WhiteboardHeader = props =>
     />
   </div>;
 
-WhiteboardHeader.propTypes = ({
+WhiteboardHeader.propTypes = {
   onAddPostIt: React.PropTypes.func,
   onAddNote: React.PropTypes.func,
   onRemoveNote: React.PropTypes.func,
@@ -29,6 +29,6 @@ WhiteboardHeader.propTypes = ({
   onOpenModal: React.PropTypes.func,
   modalIsOpen: React.PropTypes.bool,
   whiteboard: React.PropTypes.object,
-});
+};
 
 export default WhiteboardHeader;

@@ -28,10 +28,10 @@ const ConfirmDeletePostIt = (props) => {
   );
 };
 
-ConfirmDeletePostIt.propTypes = () => ({
+ConfirmDeletePostIt.propTypes = {
   isVisible: React.PropTypes.bool,
   idOfPostItToDelete: React.PropTypes.number,
   onDelete: React.PropTypes.func
-});
+};
 
 export default ConfirmDeletePostIt;

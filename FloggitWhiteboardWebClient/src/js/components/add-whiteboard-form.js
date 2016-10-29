@@ -1,7 +1,6 @@
 import React from 'react';
 
 const AddWhiteboardForm = (props) => {
-
   let whiteboardInput;
 
   function saveWhiteboard() {
