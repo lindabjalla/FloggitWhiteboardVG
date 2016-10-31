@@ -2,8 +2,8 @@ import axios from 'axios';
 import socketIOclient from 'socket.io-client';
 import * as types from '../constants/action-types';
 
-const updateAllPostits = postIts => ({
-  type: types.GET_ALL,
+const updateAllPostIts = postIts => ({
+  type: types.UPDATE_ALL_POSTITS,
   data: postIts
 });
 
@@ -26,7 +26,7 @@ export const startSocket = () => (dispatch) => {
   const socket = socketIOclient('http://localhost:8080');
 
   socket.on('postit-updated', (postIts) => {
-    dispatch(updateAllPostits(postIts));
+    dispatch(updateAllPostIts(postIts));
   });
   socket.on('whiteboard-updated', (whiteboards) => {
     dispatch(updateAllWhiteboards(whiteboards));

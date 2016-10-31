@@ -5,7 +5,7 @@ const initialState = [];
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_ALL: {
+    case types.UPDATE_ALL_POSTITS: {
       const postIts = action.data;
       const sortedPostIts = sortByDate(postIts);
       return [...sortedPostIts];
