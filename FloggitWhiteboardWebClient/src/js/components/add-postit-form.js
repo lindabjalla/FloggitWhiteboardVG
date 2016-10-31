@@ -26,8 +26,15 @@ const AddPostItForm = (props) => {
     const postTitle = title.value.trim();
     const postText = text.value.trim();
     const postColor = color.value;
-    const postIt = { id: -1, title: postTitle, text: postText, color: postColor, notes: props.notes };
-    props.onAddPostIt(postIt, props.whiteboard);
+    const postIt = {
+      id: -1,
+      title: postTitle,
+      text: postText,
+      color: postColor,
+      notes: props.notes,
+      whiteboardId: props.whiteboard.id
+    };
+    props.onAddPostIt(postIt);
     props.closeModal();
   };
 

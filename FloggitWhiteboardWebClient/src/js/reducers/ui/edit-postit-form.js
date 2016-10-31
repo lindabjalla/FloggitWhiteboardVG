@@ -1,4 +1,4 @@
-import {SHOW_EDIT_POSTIT_FORM, GET_POSTIT_TO_EDIT, UPDATE_EDIT_DIALOG} from '../../constants/action-types';
+import {SHOW_EDIT_POSTIT_FORM, GET_POSTIT_TO_EDIT} from '../../constants/action-types';
 
 const initialState = {
   visible: false,
@@ -12,10 +12,6 @@ const reducer = (state = initialState, action) => {
     }
     case GET_POSTIT_TO_EDIT: {
       return Object.assign({}, state, { postItToEdit: action.data });
-    }
-    case UPDATE_EDIT_DIALOG: {
-      const postItToEdit = action.data.postits.filter(postit => postit.id === action.data.id);
-      return Object.assign({}, state, { postItToEdit });
     }
     default: {
       return state;

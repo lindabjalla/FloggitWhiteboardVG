@@ -29,10 +29,15 @@ const editDialogStyles = {
 };
 
 const Whiteboard = (props) => {
-  function getWhiteboard() {
+  const getWhiteboard = () => {
     const whiteboardId = Number(props.params.whiteboardId);
     return props.whiteboards.filter(whiteboard => whiteboard.id === whiteboardId)[0];
-  }
+  };
+
+  const getPostIts = () => {
+    const whiteboardId = Number(props.params.whiteboardId);
+    return props.postIts.filter(postIt => postIt.whiteboardId === whiteboardId);
+  };
 
   return (
     <div>
@@ -49,7 +54,7 @@ const Whiteboard = (props) => {
       />
       <div className="post-its-container">
         <ul className="list-group">
-          {getWhiteboard().postIts.map(item => (
+          {getPostIts().map(item => (
             <PostIt
               key={item.id}
               id={item.id}
@@ -83,7 +88,7 @@ const Whiteboard = (props) => {
 };
 
 const mapStateToProps = state => ({
-  postits: state.postits,
+  postIts: state.postIts,
   confirmIsVisible: state.deleteDialog.confirmIsVisible,
   idOfPostItToDelete: state.deleteDialog.idOfPostItToDelete,
   editDialogIsVisible: state.editDialog.visible,
@@ -95,8 +100,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleAddPostIt: (postit, whiteboard) => {
-    dispatch(serviceActions.addPostIt(postit, whiteboard));
+  handleAddPostIt: (postit) => {
+    dispatch(serviceActions.addPostIt(postit));
   },
   handleDeleteClick: (id) => {
     dispatch(actions.setIdOfPostItToDelete(id));
@@ -116,10 +121,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.showEditDialog(true));
     dispatch(actions.getPostitToEdit(postit));
   },
-  handleUpdatePostIt: (postIt, whiteboard) => {
+  handleUpdatePostIt: (postIt) => {
+
     dispatch(serviceActions.updatePostIt(postIt));
     dispatch(actions.showEditDialog(false));
-    dispatch(serviceActions.updateWhiteboard(whiteboard));
   },
   handleExit: () => {
     dispatch(actions.showEditDialog(false));

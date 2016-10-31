@@ -37,16 +37,10 @@ const EditDialogue = (props) => {
       text: postText,
       timeCreated: props.data.timeCreated,
       color: postColor,
-      notes: props.notes
+      notes: props.notes,
+      whiteboardId: props.whiteboard.id
     };
-    const newPostIts = updatePostIts(postIt);
-    const whiteboard = { id: props.whiteboard.id, name: props.whiteboard.name, postIts: [...newPostIts] };
-    props.onUpdate(postIt, whiteboard);
-  };
-
-  const updatePostIts = (postIt) => {
-    const filteredPostIts = props.whiteboard.postIts.filter(aPostIt => aPostIt.id !== postIt.id);
-    return [...filteredPostIts, postIt];
+    props.onUpdate(postIt);
   };
 
   return (

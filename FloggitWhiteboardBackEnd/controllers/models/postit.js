@@ -32,7 +32,8 @@ module.exports.addOrUpdate = function (item) {
     text: item.text,
     timeCreated: item.timeCreated,
     color: item.color,
-    notes: item.notes
+    notes: item.notes,
+    whiteboardId: item.whiteboardId
   };
   postIts.push(postIt);
   updateAllPostits();

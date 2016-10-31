@@ -1,10 +1,5 @@
 import {ADD_WHITEBOARD, REMOVE_WHITEBOARD, UPDATE_ALL_WHITEBOARDS} from '../constants/action-types';
-import {sortById, sortByDate} from '../tool-box/sort';
-
-const sortPostItsOfWhiteboards = (whiteboards) => {
-  whiteboards.forEach(whiteboard => sortByDate(whiteboard.postIts));
-  return whiteboards;
-};
+import {sortById} from '../tool-box/sort';
 
 const initialState = [];
 
@@ -18,8 +13,7 @@ const reducer = (state = initialState, action) => {
     }
     case UPDATE_ALL_WHITEBOARDS: {
       const whiteboards = action.data;
-      const whiteboardsWithSortedPostIts = sortPostItsOfWhiteboards(whiteboards);
-      const sortedWhiteboards = sortById(whiteboardsWithSortedPostIts);
+      const sortedWhiteboards = sortById(whiteboards);
       return [...sortedWhiteboards];
     }
     default: {

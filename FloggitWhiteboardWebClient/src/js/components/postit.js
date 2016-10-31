@@ -22,7 +22,7 @@ const PostIt = (props) => {
           <p> { props.data.title } </p>
         </h5>
         <div id="container">
-          <p className="text">{ props.data.text }</p>
+          <p className="text">{props.data.text}</p>
         </div>
         <ul className="post-it-note-list">{props.data.notes.map(note => (
           <li key={note.id}>

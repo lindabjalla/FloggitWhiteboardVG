@@ -33,12 +33,9 @@ export const startSocket = () => (dispatch) => {
   });
 };
 
-export const addPostIt = (postIt, whiteboard) => (dispatch) => {
-  axios.post('http://localhost:8080/api/v1/postits', postIt)
-    .then((response) => {
-      const newPostIts = [...whiteboard.postIts, response.data];
-      const newWhiteboard = {id: whiteboard.id, name: whiteboard.name, postIts: [...newPostIts]};
-      dispatch(updateWhiteboard(newWhiteboard));
+export const addPostIt = (postIt) => (dispatch) => {
+  axios.post('http://localhost:8080/api/v1/postIts', postIt)
+    .then(() => {
     }).catch((error) => {
     dispatch(internalError(error.status));
   });

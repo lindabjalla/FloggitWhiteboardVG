@@ -4,12 +4,11 @@ const AddWhiteboardForm = (props) => {
   let whiteboardInput;
 
   const saveWhiteboard = () => {
-    const whiteboardName = whiteboardInput.value;
+    const whiteboardName = whiteboardInput.value.trim();
     if (whiteboardName.length > 0) {
       const whiteboard = {
         id: -1,
-        name: whiteboardName,
-        postIts: []
+        name: whiteboardName
       };
       props.onAddWhiteboard(whiteboard);
       whiteboardInput = '';
