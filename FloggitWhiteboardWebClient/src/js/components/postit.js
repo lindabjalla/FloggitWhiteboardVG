@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 const PostIt = (props) => {
   const showEditDialogue = () => {
@@ -10,9 +11,12 @@ const PostIt = (props) => {
     props.onDelete(props.data.id);
   };
 
+  const colorName = props.data.color.toLowerCase();
+  const panelBodyClass = classNames('panel-body', colorName);
+
   return (
     <li className="post-it">
-      <div className="panel-body" style={{ backgroundColor: props.data.color.code }}>
+      <div className={panelBodyClass}>
         <h6>{props.data.timeCreated}</h6>
         <h5 className="title">
           <p> { props.data.title } </p>

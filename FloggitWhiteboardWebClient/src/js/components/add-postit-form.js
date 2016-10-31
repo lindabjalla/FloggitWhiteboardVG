@@ -1,6 +1,5 @@
 import React from 'react';
 import Note from './note';
-import setColor from '../tool-box/color-setter';
 import generateId from '../tool-box/id-generator';
 
 const AddPostItForm = (props) => {
@@ -26,7 +25,7 @@ const AddPostItForm = (props) => {
   const savePostIt = () => {
     const postTitle = title.value.trim();
     const postText = text.value.trim();
-    const postColor = setColor(color);
+    const postColor = color.value;
     const postIt = { id: -1, title: postTitle, text: postText, color: postColor, notes: props.notes };
     props.onAddPostIt(postIt, props.whiteboard);
     props.closeModal();

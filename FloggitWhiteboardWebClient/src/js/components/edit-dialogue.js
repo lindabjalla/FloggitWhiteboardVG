@@ -1,6 +1,5 @@
 import React from 'react';
 import Note from './note';
-import setColor from '../tool-box/color-setter';
 import generateId from '../tool-box/id-generator';
 
 const EditDialogue = (props) => {
@@ -31,7 +30,7 @@ const EditDialogue = (props) => {
   const updatePostIt = () => {
     const postTitle = title.value.trim();
     const postText = text.value.trim();
-    const postColor = setColor(color);
+    const postColor = color.value;
     const postIt = {
       id: props.data.id,
       title: postTitle,
@@ -89,7 +88,7 @@ const EditDialogue = (props) => {
             <select
               className="form-control"
               id="color"
-              defaultValue={props.data.color.name}
+              defaultValue={props.data.color}
               ref={(c) => {
                 color = c;
               }}

@@ -135,3 +135,19 @@ legend {
     font-size: large;
     color: #ffffff;
 }
+
+.blue {
+    background-color: dodgerblue;
+}
+
+.green {
+    background-color: mediumseagreen;
+}
+
+.pink {
+    background-color: pink;
+}
+
+.orange {
+    background-color: lightsalmon;
+}
