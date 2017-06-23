@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import AddPostItForm from './add-postit-form';
+import PropTypes from 'prop-types';
 
 const customStyles = {
   content: {
@@ -57,12 +58,14 @@ const AddPostItButton = (props) => {
 };
 
 AddPostItButton.propTypes = {
-  onAddPostIt: React.PropTypes.func,
-  onAddNote: React.PropTypes.func,
-  onRemoveNote: React.PropTypes.func,
-  addPostItFormIsVisible: React.PropTypes.bool,
-  notes: React.PropTypes.arrayOf(React.PropTypes.object),
-  whiteboard: React.PropTypes.object,
+  onAddPostIt: PropTypes.func,
+  onAddNote: PropTypes.func,
+  onRemoveNote: PropTypes.func,
+  addPostItFormIsVisible: PropTypes.bool,
+  notes: PropTypes.array,
+  whiteboard: PropTypes.object,
+  onShowAddPostItForm: PropTypes.func,
+  onSetNotes: PropTypes.func
 };
 
 export default AddPostItButton;

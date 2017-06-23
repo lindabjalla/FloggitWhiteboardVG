@@ -6,6 +6,7 @@ import * as serviceActions from '../actions/service';
 import * as actions from '../actions/index';
 import AddWhiteboardForm from './add-whiteboard-form';
 import TitleBar from './titlebar';
+import PropTypes from 'prop-types';
 
 const customStyles = {
   content: {
@@ -18,13 +19,13 @@ const customStyles = {
 };
 
 const Home = (props) => {
-  function closeModal() {
+  const closeModal = () => {
     props.handleShowAddWhiteboardForm(false);
-  }
+  };
 
-  function openModal() {
+  const openModal = () => {
     props.handleShowAddWhiteboardForm(true);
-  }
+  };
 
   return (
     <div>
@@ -56,6 +57,7 @@ const Home = (props) => {
       </ul>
       <Modal
         isOpen={props.addWhiteboardFormIsVisible}
+        contentLabel="Modal"
         onRequestClose={() => closeModal()}
         style={customStyles}
       >
@@ -70,7 +72,6 @@ const Home = (props) => {
 };
 
 const mapStateToProps = state => ({
-  modalIsOpen: state.modal,
   whiteboards: state.whiteboards,
   title: state.whiteboard,
   addWhiteboardFormIsVisible: state.addWhiteboardForm
@@ -89,11 +90,11 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Home.propTypes = {
-  handleShowAddWhiteboardForm: React.PropTypes.func,
-  whiteboards: React.PropTypes.arrayOf(React.PropTypes.object),
-  addWhiteboardFormIsVisible: React.PropTypes.bool,
-  handleAddWhiteboard: React.PropTypes.func,
-  handleRemoveWhiteboard: React.PropTypes.func
+  handleShowAddWhiteboardForm: PropTypes.func,
+  whiteboards: PropTypes.array,
+  addWhiteboardFormIsVisible: PropTypes.bool,
+  handleAddWhiteboard: PropTypes.func,
+  handleRemoveWhiteboard: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

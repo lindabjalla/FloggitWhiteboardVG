@@ -45,7 +45,7 @@ gulp.task('javascript', () => browserify(
   .bundle()
   .pipe(source('todo.bundle.js'))
   .pipe(buffer())
-  .pipe(sourcemaps.init({ loadMaps: true }))
+  .pipe(sourcemaps.init({loadMaps: true}))
   .pipe(sourcemaps.write('./'))
   .pipe(gulp.dest('./dist/js'))
 );

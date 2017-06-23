@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/frodrok/FloggitWhiteboard.git"
+    "url": "git+https://github.com/lindabjalla/FloggitWhiteboardVG.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/frodrok/FloggitWhiteboard/issues"
+    "url": "https://github.com/lindabjalla/FloggitWhiteboardVG/issues"
   },
-  "homepage": "https://github.com/frodrok/FloggitWhiteboard#readme",
+  "homepage": "https://github.com/lindabjalla/FloggitWhiteboard#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
     "eslint": "^3.7.0",
@@ -27,6 +27,9 @@
     "morgan": "^1.7.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "socket.io": "^1.5.0"
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0"
   }
 }

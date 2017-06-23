@@ -1,6 +1,7 @@
 import React from 'react';
 import Note from './note';
 import generateId from '../tool-box/id-generator';
+import PropTypes from 'prop-types';
 
 const AddPostItForm = (props) => {
   let title;
@@ -143,8 +144,12 @@ const AddPostItForm = (props) => {
 };
 
 AddPostItForm.propTypes = {
-  closeModal: React.PropTypes.func,
-  notes: React.PropTypes.arrayOf(React.PropTypes.object)
+  closeModal: PropTypes.func,
+  notes: PropTypes.array,
+  onAddNote: PropTypes.func,
+  onRemoveNote: PropTypes.func,
+  whiteboard: PropTypes.object,
+  onAddPostIt: PropTypes.func
 };
 
 export default AddPostItForm;

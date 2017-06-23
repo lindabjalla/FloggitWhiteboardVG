@@ -1,72 +1,70 @@
 var express = require('express');
-var postitModel = require('../models/postit');
-var whiteboardModel = require('../models/whiteboard');
+var postItModel = require('../model/postIt');
+var whiteboardModel = require('../model/whiteboard');
 
 var router = express.Router();
 
-// get a postit (accessed at GET http://localhost:8080/api/v1/postits)
-router.get('/postits', function (req, res) {
-  res.json(postitModel.getAll());
+// get a post-it (accessed at GET http://localhost:8081/api/v1/post-it)
+router.get('/post-it', function (req, res) {
+  res.json(postItModel.getAll());
 });
 
-// create a postit (accessed at POST http://localhost:8080/api/v1/postits)
-router.route('/postits')
+// create a post-it (accessed at POST http://localhost:8081/api/v1/post-it)
+router.route('/post-it')
   .post(function (req, res) {
-    var newpostit = req.body;
-    var postItToReturn = postitModel.addOrUpdate(newpostit);
+    var newPostIt = req.body;
+    var postItToReturn = postItModel.addOrUpdate(newPostIt);
     res.json(postItToReturn);
   });
 
-// get the postit with id (accessed at PUT http://localhost:8080/api/v1/postits/:id)
-router.route('/postits/:id')
+// get the post-it with id (accessed at PUT http://localhost:8081/api/v1/post-it/:id)
+router.route('/post-it/:id')
   .get(function (req, res) {
-    var postitItem = postitModel.get(req.params.id);
-    if (postitItem) {
-      res.json(postitModel.get(req.params.id));
+    var postItItem = postItModel.get(req.params.id);
+    if (postItItem) {
+      res.json(postItModel.get(req.params.id));
     } else {
       res.status(404);
-      res.send();
     }
   })
-  // delete the postit with id (accessed at DELETE http://localhost:8080/api/v1/postits/:id)
+  // delete the post-it with id (accessed at DELETE http://localhost:8081/api/v1/post-it/:id)
   .delete(function (req, res) {
-    postitModel.delete(req.params.id);
+    postItModel.delete(req.params.id);
     res.status(200);
     res.json({
       message: 'Successfully deleted'
     });
-    // res.send();
   })
-  // updatePostIt the postit with id (accessed at PUT http://localhost:8080/api/v1/postits/:id)
+
+  // updatePostIt the post-it with id (accessed at PUT http://localhost:8081/api/v1/post-it/:id)
   .put(function (req, res) {
-    var updatePostit = req.body;
+    var postItToUpdate = req.body;
     var id = req.params.id;
     id = parseInt(id);
-    if (postitModel.get(id)) {
-      postitModel.delete(id);
-      postitModel.addOrUpdate(updatePostit);
+    if (postItModel.get(id)) {
+      postItModel.delete(id);
+      postItModel.addOrUpdate(postItToUpdate);
       res.status(200);
-      res.send();
     } else {
-      postitModel.addOrUpdate(updatePostit);
+      postItModel.addOrUpdate(postItToUpdate);
       res.status(201);
-      res.json(updatePostit);
-      res.send();
+      res.json(postItToUpdate);
     }
   });
 
-router.get('/whiteboards', function (req, res) {
+router.get('/whiteboard', function (req, res) {
   res.json(whiteboardModel.getAll());
 });
 
-router.route('/whiteboards')
+router.route('/whiteboard')
   .post(function (req, res) {
+    console.log(req);
     var newWhiteboard = req.body;
     var whiteboardToReturn = whiteboardModel.addOrUpdate(newWhiteboard);
     res.json(whiteboardToReturn);
   });
 
-router.route('/whiteboards/:id')
+router.route('/whiteboard/:id')
   .put(function (req, res) {
     var updateWhiteboard = req.body;
     var id = req.params.id;
@@ -77,7 +75,7 @@ router.route('/whiteboards/:id')
       res.status(200);
       res.send();
     } else {
-      postitModel.addOrUpdate(updateWhiteboard);
+      postItModel.addOrUpdate(updateWhiteboard);
       res.status(201);
       res.json(updateWhiteboard);
       res.send();

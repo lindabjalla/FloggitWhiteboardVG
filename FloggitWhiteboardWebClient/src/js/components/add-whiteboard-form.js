@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const AddWhiteboardForm = (props) => {
   let whiteboardInput;
@@ -54,7 +55,8 @@ const AddWhiteboardForm = (props) => {
 };
 
 AddWhiteboardForm.propTypes = {
-  onCloseModal: React.PropTypes.func
+  onCloseModal: PropTypes.func,
+  onAddWhiteboard: PropTypes.func
 };
 
 export default AddWhiteboardForm;

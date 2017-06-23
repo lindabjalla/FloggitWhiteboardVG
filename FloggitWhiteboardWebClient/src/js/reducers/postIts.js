@@ -1,5 +1,5 @@
 import * as types from '../constants/action-types';
-import {sortByDate} from '../tool-box/sort';
+import { sortByDate } from '../tool-box/sort';
 
 const initialState = [];
 

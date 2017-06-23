@@ -1,4 +1,4 @@
-import {SHOW_ADD_WHITEBOARD_FORM} from '../../constants/action-types';
+import { SHOW_ADD_WHITEBOARD_FORM } from '../../constants/action-types';
 
 const initialState = false;
 

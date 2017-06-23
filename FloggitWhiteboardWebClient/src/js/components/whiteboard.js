@@ -7,6 +7,7 @@ import PostIt from './postit';
 import WhiteboardHeader from './whiteboard-header';
 import EditDialogue from './edit-dialogue';
 import ConfirmDeletePostIt from './confirm-delete-dialog';
+import PropTypes from 'prop-types';
 
 const confirmDialogStyles = {
   content: {
@@ -147,22 +148,25 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Whiteboard.propTypes = {
-  handleAddPostIt: React.PropTypes.func,
-  confirmIsVisible: React.PropTypes.bool,
-  handleDeleteClick: React.PropTypes.func,
-  handleEdit: React.PropTypes.func,
-  handleSetNotes: React.PropTypes.func,
-  editDialogIsVisible: React.PropTypes.bool,
-  handleUpdatePostIt: React.PropTypes.func,
-  handleExit: React.PropTypes.func,
-  handleAddNote: React.PropTypes.func,
-  handleRemoveNote: React.PropTypes.func,
-  idOfPostItToDelete: React.PropTypes.number,
-  handleDeletePostIt: React.PropTypes.func,
-  handleShowAddPostItForm: React.PropTypes.func,
-  notes: React.PropTypes.arrayOf(React.PropTypes.object),
-  addPostItFormIsVisible: React.PropTypes.bool,
-  postItToEdit: React.PropTypes.object
+  handleAddPostIt: PropTypes.func,
+  confirmIsVisible: PropTypes.bool,
+  handleDeleteClick: PropTypes.func,
+  handleEdit: PropTypes.func,
+  handleSetNotes: PropTypes.func,
+  editDialogIsVisible: PropTypes.bool,
+  handleUpdatePostIt: PropTypes.func,
+  handleExit: PropTypes.func,
+  handleAddNote: PropTypes.func,
+  handleRemoveNote: PropTypes.func,
+  idOfPostItToDelete: PropTypes.number,
+  handleDeletePostIt: PropTypes.func,
+  handleShowAddPostItForm: PropTypes.func,
+  notes: PropTypes.array,
+  addPostItFormIsVisible: PropTypes.bool,
+  postItToEdit: PropTypes.object,
+  params: PropTypes.object,
+  whiteboards: PropTypes.array,
+  postIts: PropTypes.array
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Whiteboard);

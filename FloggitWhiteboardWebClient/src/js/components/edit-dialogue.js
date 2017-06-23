@@ -1,6 +1,7 @@
 import React from 'react';
 import Note from './note';
 import generateId from '../tool-box/id-generator';
+import PropTypes from 'prop-types';
 
 const EditDialogue = (props) => {
   let title;
@@ -141,9 +142,13 @@ const EditDialogue = (props) => {
 };
 
 EditDialogue.propTypes = {
-  data: React.PropTypes.object,
-  onUpdate: React.PropTypes.func,
-  onExit: React.PropTypes.func
+  data: PropTypes.object,
+  onUpdate: PropTypes.func,
+  onExit: PropTypes.func,
+  notes: PropTypes.array,
+  onAddNote: PropTypes.func,
+  onRemoveNote: PropTypes.func,
+  whiteboard: PropTypes.object
 };
 
 export default EditDialogue;

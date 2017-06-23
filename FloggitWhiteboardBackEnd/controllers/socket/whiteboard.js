@@ -1,4 +1,4 @@
-var whiteboardModel = require('../models/whiteboard');
+var whiteboardModel = require('../model/whiteboard');
 
 module.exports = function (socket) {
   var whiteboards = whiteboardModel.getAll();

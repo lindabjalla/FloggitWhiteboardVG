@@ -1,6 +1,7 @@
 import React from 'react';
 import TitleBar from './titlebar';
 import AddPostItButton from './add-postit-button';
+import PropTypes from 'prop-types';
 
 const WhiteboardHeader = props =>
   <div>
@@ -20,15 +21,15 @@ const WhiteboardHeader = props =>
   </div>;
 
 WhiteboardHeader.propTypes = {
-  onAddPostIt: React.PropTypes.func,
-  onAddNote: React.PropTypes.func,
-  onRemoveNote: React.PropTypes.func,
-  title: React.PropTypes.string,
-  notes: React.PropTypes.arrayOf(React.PropTypes.object),
-  onSetNotes: React.PropTypes.func,
-  onShowAddPostItForm: React.PropTypes.func,
-  addPostItFormIsVisible: React.PropTypes.bool,
-  whiteboard: React.PropTypes.object,
+  onAddPostIt: PropTypes.func,
+  onAddNote: PropTypes.func,
+  onRemoveNote: PropTypes.func,
+  title: PropTypes.string,
+  notes: PropTypes.array,
+  onSetNotes: PropTypes.func,
+  onShowAddPostItForm: PropTypes.func,
+  addPostItFormIsVisible: PropTypes.bool,
+  whiteboard: PropTypes.object,
 };
 
 export default WhiteboardHeader;

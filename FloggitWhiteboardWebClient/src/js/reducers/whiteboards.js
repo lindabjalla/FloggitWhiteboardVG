@@ -1,5 +1,5 @@
-import {ADD_WHITEBOARD, REMOVE_WHITEBOARD, UPDATE_ALL_WHITEBOARDS} from '../constants/action-types';
-import {sortById} from '../tool-box/sort';
+import { ADD_WHITEBOARD, REMOVE_WHITEBOARD, UPDATE_ALL_WHITEBOARDS } from '../constants/action-types';
+import { sortById } from '../tool-box/sort';
 
 const initialState = [];
 

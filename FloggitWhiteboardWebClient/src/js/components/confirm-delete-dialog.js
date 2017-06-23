@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ConfirmDeletePostIt = (props) => {
   function updatePostIts() {
@@ -29,9 +30,10 @@ const ConfirmDeletePostIt = (props) => {
 };
 
 ConfirmDeletePostIt.propTypes = {
-  isVisible: React.PropTypes.bool,
-  idOfPostItToDelete: React.PropTypes.number,
-  onDelete: React.PropTypes.func
+  isVisible: PropTypes.bool,
+  idOfPostItToDelete: PropTypes.number,
+  onDelete: PropTypes.func,
+  whiteboard: PropTypes.object,
 };
 
 export default ConfirmDeletePostIt;

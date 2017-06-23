@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const PostIt = (props) => {
   const showEditDialogue = () => {
@@ -39,11 +40,12 @@ const PostIt = (props) => {
 };
 
 PostIt.propTypes = {
-  id: React.PropTypes.number,
-  data: React.PropTypes.object,
-  onEdit: React.PropTypes.func,
-  confirmIsVisible: React.PropTypes.bool,
-  onDelete: React.PropTypes.func
+  id: PropTypes.number,
+  data: PropTypes.object,
+  onEdit: PropTypes.func,
+  confirmIsVisible: PropTypes.bool,
+  onDelete: PropTypes.func,
+  onSetNotes: PropTypes.func
 };
 
 export default PostIt;

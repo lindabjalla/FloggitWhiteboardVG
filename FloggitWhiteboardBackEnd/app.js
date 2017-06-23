@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var routerV1 = require('./controllers/routes/routes-v1');
 var cors = require('./middleware/cors');
 var io = require('socket.io')(http);
-var postitSocket = require('./controllers/socket/postit');
+var postItSocket = require('./controllers/socket/postit');
 var whiteboardSocket = require('./controllers/socket/whiteboard');
 
 app.use(bodyParser.urlencoded({
@@ -19,10 +19,9 @@ app.use(logger('dev'));
 app.use(cors);
 app.use('/api/v1', routerV1);
 
-process.setMaxListeners(0);
-io.on('connection', postitSocket);
+io.on('connection', postItSocket);
 io.on('connection', whiteboardSocket);
 
-http.listen(8080, function () {
-  console.log('service started on port 8080, url: http://localhost:8080');
+http.listen(8081, function () {
+  console.log('service started on port 8081, url: http://localhost:8081');
 });

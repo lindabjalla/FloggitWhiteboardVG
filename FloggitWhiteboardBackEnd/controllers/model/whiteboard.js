@@ -1,6 +1,7 @@
 var whiteboards = [];
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
+eventEmitter.setMaxListeners(0);
 
 function generateId() {
   return +(new Date());
@@ -11,6 +12,8 @@ function updateWhiteboard() {
 }
 
 module.exports.addOrUpdate = function (whiteboard) {
+  console.log(whiteboard);
+
   if (whiteboard.id === -1) {
     whiteboard.id = generateId();
   } else {

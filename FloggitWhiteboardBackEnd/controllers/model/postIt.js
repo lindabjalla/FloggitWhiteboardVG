@@ -1,12 +1,13 @@
 var postIts = [];
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
+eventEmitter.setMaxListeners(0);
 
 function generateId() {
   return +(new Date());
 }
 
-function updateAllPostits() {
+function updateAllPostIts() {
   eventEmitter.emit('updated', postIts);
 }
 
@@ -36,7 +37,7 @@ module.exports.addOrUpdate = function (item) {
     whiteboardId: item.whiteboardId
   };
   postIts.push(postIt);
-  updateAllPostits();
+  updateAllPostIts();
   return postIt;
 };
 
@@ -56,7 +57,7 @@ module.exports.delete = function (id) {
   postIts = postIts.filter(function (item) {
     return item.id !== id;
   });
-  updateAllPostits();
+  updateAllPostIts();
   return deletedItem;
 };
 

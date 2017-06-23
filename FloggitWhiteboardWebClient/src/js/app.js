@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import {Route, Router, browserHistory, IndexRoute} from 'react-router';
-import {syncHistoryWithStore} from 'react-router-redux';
+import { Provider } from 'react-redux';
+import { browserHistory, IndexRoute, Route, Router } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import Root from './components/root';
 import Home from './components/home';
 import Whiteboard from './components/whiteboard';

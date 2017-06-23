@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Root = props =>
   <div>
@@ -6,9 +7,9 @@ const Root = props =>
   </div>;
 
 Root.propTypes = {
-  children: React.PropTypes.oneOfType([
-    React.PropTypes.arrayOf(React.PropTypes.node),
-    React.PropTypes.node
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.node
   ])
 };
 

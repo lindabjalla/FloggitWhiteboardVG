@@ -4,7 +4,7 @@
   "description": "WebService for managing a digital whiteboard with post-it notes. Written in javascript using Node.js.",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.14.0",
+    "axios": "^0.16.2",
     "babel-polyfill": "^6.16.0",
     "body-parser": "^1.15.2",
     "classnames": "^2.2.5",
@@ -13,20 +13,20 @@
     "http": "^0.0.0",
     "jquery": "^3.1.1",
     "path": "^0.12.7",
+    "prop-types": "^15.5.10",
     "react": "^15.3.2",
     "react-addons": "^0.9.1-deprecated",
     "react-bootstrap": "^0.30.3",
-    "react-dom": "^15.3.2",
-    "react-modal": "^1.4.0",
-    "react-redux": "^4.4.5",
+    "react-dom": "^15.6.1",
+    "react-modal": "^2.0.6",
+    "react-redux": "^5.0.5",
     "react-router": "^2.8.1",
-    "react-router-redux": "^4.0.6",
+    "react-router-redux": "^4.0.8",
     "redux": "^3.6.0",
     "redux-localstorage": "^0.4.1",
     "redux-logger": "^2.7.0",
     "redux-thunk": "^2.1.0",
-    "socket.io-client": "^1.5.0",
-    "webpack-stream": "^3.2.0"
+    "socket.io-client": "^2.0.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",
@@ -35,15 +35,15 @@
     "babelify": "^7.3.0",
     "browser-sync": "^2.17.0",
     "browserify": "^13.1.0",
-    "eslint": "^3.8.1",
-    "eslint-config-airbnb": "^12.0.0",
-    "eslint-plugin-import": "^1.16.0",
-    "eslint-plugin-jsx-a11y": "^2.2.2",
-    "eslint-plugin-react": "^6.3.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-react": "^7.0.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^6.1.2",
-    "gulp-clean-css": "^2.0.13",
+    "gulp-clean-css": "^3.4.2",
     "gulp-cli": "^1.2.2",
     "gulp-concat": "^2.6.0",
     "gulp-htmlmin": "^2.0.0",
@@ -60,12 +60,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/frodrok/FloggitWhiteboard.git"
+    "url": "git+https://github.com/lindabjalla/FloggitWhiteboardVG.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/frodrok/FloggitWhiteboard/issues"
+    "url": "https://github.com/lindabjalla/FloggitWhiteboardVG/issues"
   },
-  "homepage": "https://github.com/lindabjalla/FloggitWhiteboard#readme"
+  "homepage": "https://github.com/lindabjalla/FloggitWhiteboardVG#readme"
 }

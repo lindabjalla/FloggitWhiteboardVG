@@ -23,9 +23,9 @@ export const removeWhiteboard = id => ({
 });
 
 export const startSocket = () => (dispatch) => {
-  const socket = socketIOclient('http://localhost:8080');
+  const socket = socketIOclient('http://localhost:8081');
 
-  socket.on('postit-updated', (postIts) => {
+  socket.on('post-it-updated', (postIts) => {
     dispatch(updateAllPostIts(postIts));
   });
   socket.on('whiteboard-updated', (whiteboards) => {
@@ -34,41 +34,42 @@ export const startSocket = () => (dispatch) => {
 };
 
 export const addPostIt = (postIt) => (dispatch) => {
-  axios.post('http://localhost:8080/api/v1/postIts', postIt)
-    .then(() => {
-    }).catch((error) => {
+  axios.post('http://localhost:8081/api/v1/post-it', postIt)
+    .then(() => {})
+    .catch((error) => {
     dispatch(internalError(error.status));
   });
 };
 
 export const removePostIt = id => (dispatch) => {
-  axios.delete(`http://localhost:8080/api/v1/postits/${id}`)
-    .then(() => {
-    }).catch((error) => {
+  axios.delete(`http://localhost:8081/api/v1/post-it/${id}`)
+    .then(() => {})
+    .catch((error) => {
     dispatch(internalError(error.status));
   });
 };
 
 export const updatePostIt = (postIt) => (dispatch) => {
-  axios.put(`http://localhost:8080/api/v1/postits/${postIt.id}`, postIt)
-    .then(() => {
-    }).catch((error) => {
+  axios.put(`http://localhost:8081/api/v1/post-it/${postIt.id}`, postIt)
+    .then(() => {})
+    .catch((error) => {
     dispatch(internalError(error.status));
   });
 };
 
 export const addWhiteboard = whiteboard => (dispatch) => {
-  axios.post('http://localhost:8080/api/v1/whiteboards', whiteboard)
-    .then(() => {
-    }).catch((error) => {
+  console.log(whiteboard);
+  axios.post('http://localhost:8081/api/v1/whiteboard', whiteboard)
+    .then(() => {})
+    .catch((error) => {
     dispatch(internalError(error.status));
   });
 };
 
 export const updateWhiteboard = whiteboard => (dispatch) => {
-  axios.put(`http://localhost:8080/api/v1/whiteboards/${whiteboard.id}`, whiteboard)
-    .then(() => {
-    }).catch((error) => {
+  axios.put(`http://localhost:8081/api/v1/whiteboard/${whiteboard.id}`, whiteboard)
+    .then(() => {})
+    .catch((error) => {
     dispatch(internalError(error.status));
   });
 };

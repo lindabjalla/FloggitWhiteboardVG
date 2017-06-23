@@ -1,4 +1,4 @@
-import {SET_TITLE} from '../constants/action-types';
+import { SET_TITLE } from '../constants/action-types';
 
 const initialState = {
   name: ''

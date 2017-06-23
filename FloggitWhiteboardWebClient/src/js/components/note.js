@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Note = props =>
   <li className="list-group-item note" key={props.id} id={props.id}>
@@ -7,9 +8,9 @@ const Note = props =>
   </li>;
 
 Note.propTypes = {
-  id: React.PropTypes.number,
-  onRemove: React.PropTypes.func,
-  value: React.PropTypes.string
+  id: PropTypes.number,
+  onRemove: PropTypes.func,
+  value: PropTypes.string
 };
 
 export default Note;

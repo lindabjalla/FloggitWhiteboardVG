@@ -1,10 +1,10 @@
-var postitModel = require('../models/postit');
+var postItModel = require('../model/postIt');
 
 module.exports = function (socket) {
-  var postIts = postitModel.getAll();
-  socket.emit('postit-updated', postIts);
+  var postIts = postItModel.getAll();
+  socket.emit('post-it-updated', postIts);
 
-  postitModel.on('updated', function updatePostits(postIts) {
-    socket.emit('postit-updated', postIts);
+  postItModel.on('updated', function updatePostIts(postIts) {
+    socket.emit('post-it-updated', postIts);
   });
 };
